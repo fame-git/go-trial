@@ -46,6 +46,27 @@ func (e Employee) Fullname() string {
 	return e.Firstname + " " + e.Lastname
 }
 
+type Speaker interface {
+	Speak() string
+	Walk() string
+}
+
+type Human struct {
+	Name string
+}
+
+func (h Human) Speak() string {
+	return "Hello!"
+}
+
+func makeSound(s Speaker) {
+	fmt.Println(s.Speak())
+}
+
+func (h Human) Walk() string {
+	return "Walk!"
+}
+
 func main() {
 	mySlice := []int{10, 20, 30, 40, 50}
 	fmt.Println(mySlice)
@@ -169,4 +190,21 @@ func main() {
 	fullName := employee.Fullname()
 	fmt.Println("Fullname of this employee is: ", fullName)
 
+	//interface
+
+	human := Human{Name: "failure"}
+
+	makeSound(human)
+
+	//pointer
+	x := 10
+
+	var p *int = &x
+
+	fmt.Println("Value of x: ", x)
+	fmt.Println("Value at p: ", *p)
+
+	*p = 20
+
+	fmt.Println("New value of x: ", x)
 }
